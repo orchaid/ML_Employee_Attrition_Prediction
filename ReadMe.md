@@ -94,6 +94,16 @@ Used SHAP (SHapley Additive exPlanations) to understand **why** the model predic
 * Shows direction and strength of impact for each feature
 * Confirms that the model aligns with real-world HR logic
 
+
+| 🔝 **Top Positive Drivers** (Increase Attrition Risk)                | 🔽 **Top Negative Drivers** (Reduce Attrition Risk)              |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **OverTime** – Working overtime increases risk.                      | **Older Age** – Older employees are more stable.                 |
+| **Low Job Satisfaction** – Unhappy in role.                          | **Higher Monthly Income** – More financial comfort.              |
+| **Low Environment Satisfaction** – Poor work environment.            | **Higher Stock Option Level** – Incentivized to stay.            |
+| **More Companies Worked For** – Suggests instability.                | **Higher Job Involvement** – More engaged employees.             |
+| **Low Relationship Satisfaction** – Poor manager/peer relationships. | **Longer Years With Current Manager** – Manager stability helps. |
+
+
 **SHAP Dependence Plot**:
 
 * Interaction between `DistanceFromHome` and `OverTime`:
@@ -101,11 +111,43 @@ Used SHAP (SHapley Additive exPlanations) to understand **why** the model predic
   * Employees living close by are often assigned overtime
   * Those far away + overtime = higher attrition
 
+---
 
 
-## Future Improvements
+# Web App: Employee Attrition Predictor (for HR decision making)
 
-* Simulate cost of attrition based on employee roles and tenure
-* Add ensemble or stacked models for better performance
-* Deploy as a web app for HR decision-makers
+To make the solution actionable for HR teams, I developed a **Streamlit web app** that predicts attrition risk for individual employees based on input features like age, job satisfaction, overtime, income, and more.
+
+**Features of the App:**
+
+* Dynamic form for entering employee details
+* Real-time prediction of attrition risk (Yes/No)
+* Probability score showing model confidence
+* Built-in explanations of the key risk and retention factors (based on SHAP findings)
+
+**ML Backend:**
+
+* Model: XGBoost (best performance, 86% accuracy)
+* Preprocessing: One-hot encoding, scaling with `StandardScaler`
+* Class balancing handled with `RandomOverSampler`
+
+**Why It Matters:**
+
+* Empowers HR teams to proactively assess and mitigate employee churn
+* Encourages data-driven retention strategies
+* Bridges the gap between machine learning output and business decision-making
+
+**Screenshot:**
+![](/Assets/streamlit_app.png)
+
+**▶ To Run Locally:**
+
+```bash
+pip install streamlit pandas numpy scikit-learn joblib xgboost
+streamlit run Employee_Attrition_App.py
+```
+
+
+
+
 
