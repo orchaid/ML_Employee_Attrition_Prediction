@@ -45,7 +45,7 @@ st.markdown("### Enter Employee Information")
 
 col1, col2, col3 = st.columns(3)
 
-# --- Column 1 ---
+# --- Column 1 
 with col1:
     age = st.slider('Age', 18, 60)
     daily_rate = st.number_input('Daily Rate', 100, 1500)
@@ -55,7 +55,7 @@ with col1:
     total_years = st.slider('Total Working Years', 0, 40)
     years_at_company = st.slider('Years at Company', 0, 40)
 
-# --- Column 2 ---
+# --- Column 2 
 with col2:
     education = st.slider('Education Level (1-5)', 1, 5)
     job_level = st.slider('Job Level (1-5)', 1, 5)
@@ -66,7 +66,7 @@ with col2:
     training_times = st.slider('Training Times Last Year', 0, 10)
     salary_hike = st.slider('Percent Salary Hike', 0, 25)
 
-# --- Column 3 ---
+# --- Column 3 
 with col3:
     years_in_role = st.slider('Years in Current Role', 0, 20)
     years_since_promo = st.slider('Years Since Last Promotion', 0, 15)
