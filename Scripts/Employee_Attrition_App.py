@@ -6,7 +6,7 @@ import numpy as np
 model= joblib.load('XGBoost_model.pkl')
 scaler= joblib.load('scaler.pkl')
 
-st.title('Employee Attrition Predictor')
+st.set_page_config(page_title='Employee Attrition Predictor', layout='wide')
 
 
 model_columns = [
@@ -41,46 +41,61 @@ features_to_scale = [
 
 
 # --- Collect Input from User ---
-age = st.slider('Age', 18, 60)
-daily_rate = st.number_input('Daily Rate', 100, 1500)
-distance = st.slider('Distance From Home', 1, 30)
-monthly_income = st.number_input('Monthly Income', 1000, 20000)
-monthly_rate = st.number_input('Monthly Rate', 1000, 20000)
-num_companies = st.slider('Num Companies Worked', 0, 10)
-total_years = st.slider('Total Working Years', 0, 40)
-salary_hike = st.slider('Percent Salary Hike', 0, 25)
-training_times = st.slider('Training Times Last Year', 0, 10)
-years_at_company = st.slider('Years at Company', 0, 40)
-years_in_role = st.slider('Years in Current Role', 0, 20)
-years_since_promo = st.slider('Years Since Last Promotion', 0, 15)
-years_with_manager = st.slider('Years With Current Manager', 0, 20)
+st.markdown("### Enter Employee Information")
 
-# Categorical (raw)
-business_travel = st.selectbox('Business Travel', ['Travel_Rarely', 'Travel_Frequently', 'Non-Travel'])
-education = st.slider('Education Level (1-5)', 1, 5)
-environment_satisfaction = st.slider('Environment Satisfaction (1-4)', 1, 4)
-gender = st.selectbox('Gender', ['Male', 'Female'])
-hourly_rate = st.number_input('Hourly Rate', 30, 150)
-job_involvement = st.slider('Job Involvement (1-4)', 1, 4)
-job_level = st.slider('Job Level (1-5)', 1, 5)
-job_satisfaction = st.slider('Job Satisfaction (1-4)', 1, 4)
-overtime = st.selectbox('OverTime', ['Yes', 'No'])
-performance_rating = st.slider('Performance Rating (1-4)', 1, 4)
-relationship_satisfaction = st.slider('Relationship Satisfaction (1-4)', 1, 4)
-stock_option = st.slider('Stock Option Level (0-3)', 0, 3)
-worklife_balance = st.slider('WorkLife Balance (1-4)', 1, 4)
+col1, col2, col3 = st.columns(3)
 
-department = st.selectbox('Department', ['Sales', 'Research & Development', 'Human Resources'])
-education_field = st.selectbox('Education Field', [
-    'Life Sciences', 'Medical', 'Marketing', 'Technical Degree',
-    'Human Resources', 'Other'
-])
-job_role = st.selectbox('Job Role', [
-    'Sales Executive', 'Research Scientist', 'Laboratory Technician',
-    'Manufacturing Director', 'Healthcare Representative', 'Manager',
-    'Sales Representative', 'Research Director', 'Human Resources'
-])
-marital_status = st.selectbox('Marital Status', ['Single', 'Married', 'Divorced'])
+# --- Column 1 ---
+with col1:
+    age = st.slider('Age', 18, 60)
+    daily_rate = st.number_input('Daily Rate', 100, 1500)
+    distance = st.slider('Distance From Home', 1, 30)
+    monthly_income = st.number_input('Monthly Income', 1000, 20000)
+    monthly_rate = st.number_input('Monthly Rate', 1000, 20000)
+    total_years = st.slider('Total Working Years', 0, 40)
+    years_at_company = st.slider('Years at Company', 0, 40)
+
+# --- Column 2 ---
+with col2:
+    education = st.slider('Education Level (1-5)', 1, 5)
+    job_level = st.slider('Job Level (1-5)', 1, 5)
+    job_involvement = st.slider('Job Involvement (1-4)', 1, 4)
+    performance_rating = st.slider('Performance Rating (1-4)', 1, 4)
+    stock_option = st.slider('Stock Option Level (0-3)', 0, 3)
+    worklife_balance = st.slider('WorkLife Balance (1-4)', 1, 4)
+    training_times = st.slider('Training Times Last Year', 0, 10)
+    salary_hike = st.slider('Percent Salary Hike', 0, 25)
+
+# --- Column 3 ---
+with col3:
+    years_in_role = st.slider('Years in Current Role', 0, 20)
+    years_since_promo = st.slider('Years Since Last Promotion', 0, 15)
+    years_with_manager = st.slider('Years With Current Manager', 0, 20)
+    hourly_rate = st.number_input('Hourly Rate', 30, 150)
+    gender = st.selectbox('Gender', ['Male', 'Female'])
+    business_travel = st.selectbox('Business Travel', ['Travel_Rarely', 'Travel_Frequently', 'Non-Travel'])
+    department = st.selectbox('Department', ['Sales', 'Research & Development', 'Human Resources'])
+    education_field = st.selectbox('Education Field', [
+        'Life Sciences', 'Medical', 'Marketing', 'Technical Degree',
+        'Human Resources', 'Other'
+    ])
+    job_role = st.selectbox('Job Role', [
+        'Sales Executive', 'Research Scientist', 'Laboratory Technician',
+        'Manufacturing Director', 'Healthcare Representative', 'Manager',
+        'Sales Representative', 'Research Director', 'Human Resources'
+    ])
+    marital_status = st.selectbox('Marital Status', ['Single', 'Married', 'Divorced'])
+
+# --- Dedicated Column for your selected 5 important features ---
+st.markdown("### Most Important Factors")
+important_col = st.columns(1)[0]
+with important_col:
+    overtime = st.selectbox('OverTime', ['Yes', 'No'])
+    job_satisfaction = st.slider('Job Satisfaction (1-4)', 1, 4)
+    environment_satisfaction = st.slider('Environment Satisfaction (1-4)', 1, 4)
+    num_companies = st.slider('Num Companies Worked', 0, 10)
+    relationship_satisfaction = st.slider('Relationship Satisfaction (1-4)', 1, 4)
+
 
 
 
