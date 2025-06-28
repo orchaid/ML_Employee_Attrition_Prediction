@@ -139,6 +139,7 @@ To make the solution actionable for HR teams, I developed a **Streamlit web app*
 
 **Screenshot:**
 ![](/Assets/streamlit_app.png)
+*you can find the interactive tool [here](https://orchaid-ml-employee-attrit-scriptsemployee-attrition-app-wgyizd.streamlit.app/)*
 
 **▶ To Run Locally:**
 
